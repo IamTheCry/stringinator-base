@@ -23,7 +23,9 @@ const indexOf = function(array, target, fromIndex=0) {
 };
 
 const isArrayLike = function(obj) {
-  return typeof obj.length === 'number' && obj.length >= 0;
+    const length = obj['length'];
+  return typeof length === 'number' && length >= 0;
+  //return typeof obj.length === 'number' && obj.length >= 0;
 };
 
 // The cornerstone of a functional library -- iterate all elements, pass each to a callback function.
@@ -50,9 +52,10 @@ const map = function(obj, callback=identity) {
   return results;
 };
 
-// Return an array of the values o a certain property in the collection.
+// Return an array of the values of a certain property in the collection.
 // E.g. given an array of people objects, return an array of just their ages.
 const pluck = function(obj, key) {
+  return map(obj, value => value[key]);
 };
 
 // Reduces collection to a value which is the accumulated result of running
