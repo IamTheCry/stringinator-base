@@ -2,26 +2,29 @@ const _ = require('./underbar');
 
 const first = function(str, n) {
   return _.first(str, n)
-  // Your code goes here
 };
 
 const last = function(str, n) {
   return _.last(str, n)
-  // Your code goes here
 };
 
 const removeChar = function(str, target) {
-  return _.reject(str, target);
+  // const newArr = _.reject(str, (char) => char === target)
+  // const newStr = newArr.join('');
+  // return newStr;
+  return _.reject(str, (char) => char === target).join('');
   // hint: use _.reject
   // Your code goes here
 };
 
 const hasChar = function(str, target) {
+  return _.some(str, char => char === target);
   // hint: use _.some
   // Your code goes here
 };
 
 const isOnlyDigits = function(str) {
+  return _.every(str, (digit) => !isNaN(digit))
   // Your code goes here
 };
 
