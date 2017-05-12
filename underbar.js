@@ -1,20 +1,28 @@
 // Returns the given value. Seems pointless perhaps but see its use below for providing a default, no-op callback.
 const identity = function(val) {
   // Your code goes here
+  return val;
 };
 
 // Returns the first n elements of the given array.
 const first = function(array, n = 1) {
   // Your code goes here
+  return n === 1 ? array[0] : array.slice(0, n);
 };
 
 // Returns the last n elements of the given array.
 const last = function(array, n = 1) {
   // Your code goes here
+  return n === 1 ? array[array.length - 1] : array.slice(Math.max(0, array.length - n));
 };
 
 // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
 const indexOf = function(array, target, fromIndex=0) {
+  for (let index = fromIndex ; index <= array.length ; index ++) {
+    if (array[index] === target) {
+      return index;
+    }
+  }return -1
   // Your code goes here
 };
 
