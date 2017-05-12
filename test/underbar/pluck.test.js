@@ -7,7 +7,7 @@ describe('pluck()', () => {
     {name: 'Edd', age: 12},
     {name: 'Eddy', age: 13},
     ];
-    const ages = _.pluck(peoples,'age');
+    const ages = _.pluck(peoples, 'age');
     expect(ages).toEqual([14, 12, 13]);
   });
 

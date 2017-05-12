@@ -1,10 +1,12 @@
 const _ = require('./underbar');
 
 const first = function(str, n) {
+  return _.first(str, n)
   // Your code goes here
 };
 
 const last = function(str, n) {
+  return _.last(str, n)
   // Your code goes here
 };
 

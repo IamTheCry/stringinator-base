@@ -25,6 +25,7 @@ const indexOf = function(array, target, fromIndex=0) {
 const isArrayLike = function(obj) {
     const length = obj['length'];
   return typeof length === 'number' && length >= 0;
+  //Below was my version that didn't work for pluck
   //return typeof obj.length === 'number' && obj.length >= 0;
 };
 
@@ -65,10 +66,24 @@ const pluck = function(obj, key) {
 // value. The callback is invoked with four arguments:
 // (accumulator, value, index|key, collection).
 const reduce = function(obj, callback=identity, initialValue) {
+  let accumulator = initialValue;
+  let initializing = accumulator === undefined;
+  each(obj, (currentValue, currentIndexOrKey, iteratedObj)  => {
+    if (initializing) {
+      initializing = false;
+      accumulator = currentValue;
+    } else {
+      accumulator = callback(accumulator, currentValue, currentIndexOrKey, iteratedObj);
+    }
+  });
+  return accumulator;
 };
 
 // Return true if the object contains the target.
 const contains = function(obj, target) {
+  return reduce(obj, (wasFound, item) => {
+    return wasFound || item === target;
+  }, false);
 };
 
 // Return true if all the elements / object values are accepted by the callback.
