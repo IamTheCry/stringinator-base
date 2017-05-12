@@ -88,22 +88,41 @@ const contains = function(obj, target) {
 
 // Return true if all the elements / object values are accepted by the callback.
 const every = function(obj, callback=identity) {
+  return reduce(obj, (allPassed, item) => {
+    return allPassed && !!callback(item);
+  }, true);
 };
 
 // Return true if even 1 element / object value is accepted by the callback.
 const some = function(obj, callback=identity) {
+  return reduce(obj, (anyPassed, item) => {
+    return anyPassed || !!callback(item);
+  }, false);
 };
 
 // Return an array with all elements / object values that are accepted by the callback.
 const filter = function(obj, callback=identity) {
+  const result = [];
+  each(obj, item => {
+    if (callback(item)) {
+      result.push(item);
+    }
+  });
+  return result;
 };
 
 // Return object without the elements / object valuesthat were rejected by the callback.
 const reject = function(arr, callback=identity) {
+  return filter(arr, item => !callback(item));
+
 };
 
 // De-duplicates (de-dups) the elements / object values.
 const uniq = function(obj) {
+  const foundItems = {};
+  return filter(obj, item => {
+    return !(item in foundItems) && (foundItems[item] = true);
+  });
 };
 
 
