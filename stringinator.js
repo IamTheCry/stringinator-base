@@ -11,6 +11,7 @@ const last = function(str, n) {
 };
 
 const removeChar = function(str, target) {
+  return _.reject(str, target);
   // hint: use _.reject
   // Your code goes here
 };
