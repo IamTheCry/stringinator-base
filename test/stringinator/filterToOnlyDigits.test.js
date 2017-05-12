@@ -10,4 +10,8 @@ describe('filterToOnlyDigits()', () => {
     const result = stringinator.filterToOnlyDigits('one two three four five');
     expect(result).toEqual('');
   });
+  it('filters to only digits when given a mixed alphanumeric string', () => {
+    const result = stringinator.filterToOnlyDigits('d8f 848 g8483 8cd8f');
+    expect(result).toEqual('8 848 8483 88');
+  });
 });

@@ -14,22 +14,20 @@ const removeChar = function(str, target) {
   // return newStr;
   return _.reject(str, (char) => char === target).join('');
   // hint: use _.reject
-  // Your code goes here
 };
 
 const hasChar = function(str, target) {
   return _.some(str, char => char === target);
   // hint: use _.some
-  // Your code goes here
 };
 
 const isOnlyDigits = function(str) {
   return _.every(str, (digit) => !isNaN(digit))
-  // Your code goes here
 };
 
 const filterToOnlyDigits = function(str) {
-  // Your code goes here
+  const digitsArray = _.filter(str, (nums) => !isNaN(nums));
+  return digitsArray.join('').trim();
 };
 
 const truncateString = function(val, maxLength) {
