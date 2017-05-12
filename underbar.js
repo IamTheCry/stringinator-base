@@ -1,18 +1,15 @@
 // Returns the given value. Seems pointless perhaps but see its use below for providing a default, no-op callback.
 const identity = function(val) {
-  // Your code goes here
   return val;
 };
 
 // Returns the first n elements of the given array.
 const first = function(array, n = 1) {
-  // Your code goes here
   return n === 1 ? array[0] : array.slice(0, n);
 };
 
 // Returns the last n elements of the given array.
 const last = function(array, n = 1) {
-  // Your code goes here
   return n === 1 ? array[array.length - 1] : array.slice(Math.max(0, array.length - n));
 };
 
@@ -23,16 +20,25 @@ const indexOf = function(array, target, fromIndex=0) {
       return index;
     }
   }return -1
-  // Your code goes here
 };
 
 const isArrayLike = function(obj) {
+  return typeof obj.length === 'number' && obj.length >= 0;
   // Your code goes here
 };
 
 // The cornerstone of a functional library -- iterate all elements, pass each to a callback function.
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 const each = function(obj, callback=identity) {
+  if (isArrayLike(obj)) {
+    for (let index = 0 ; index < obj.length ; index++) {
+      callback(obj[index], index, obj);
+    }
+  } else {
+    for (let key in obj) {
+      callback(obj[key], key, obj)
+    }
+  }
   // Your code goes here
 };
 
