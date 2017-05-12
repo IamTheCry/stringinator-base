@@ -36,11 +36,21 @@ const truncateString = function(val, maxLength) {
 };
 
 const truncateLongItems = function(obj, maxLength) {
-  // hint: use truncateString above
-  // Your code goes here
+  //return _.each(obj, truncateString(this.obj[key], maxLength));
+  return _.map(obj, item => truncateString(item, maxLength));
 };
 
 const countChars = function(str) {
+  _.reduce(str, function (obj, char) { 
+    if( char in obj ) { 
+      obj[char] ++; 
+    } else {  
+      obj[char] = 1;  
+    }
+    console.log(obj)
+    return obj; 
+  }, {});
+  //return _.reduce(str, (letter, count) => letter[count] += 1 || 0 ,{});
   // Your code goes here
 };
 
